@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useState} from 'react';
+import toDoLogo from "./assets/todo_icon.png";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const todoOptions = [
+        "fix bug by adding another bug",
+        "ponder yarn's performance",
+        "add comments",
+        "think about sharks",
+        "console.log everything",
+        "commit directly to main"
+    ]
+
+    const getRandomIndex = () => {
+        return Math.floor(Math.random() * todoOptions.length);
+    }
+
+    const [activeTodo, setActiveTodo] = useState(todoOptions[getRandomIndex()]);
+
+
+    return (
+        <>
+            <div className={"flex flex-col h-screen  items-center"}>
+                <header>
+                    <div className={"flex gap-4 mt-4 w-[90vw] p-4 bg-blue-400 rounded-xl shadow-xl cursor-pointer"}>
+                        <img src={toDoLogo} alt="app logo" className={"h-16 w-16ß rounded-xl shadow"}/>
+                        <h1>// Todo: {activeTodo}</h1>
+
+
+                    </div>
+                </header>
+                <main className={"grow content-center grid gap-4"}>
+                    future todo list will be here probably
+                    <button onClick={() => setActiveTodo(todoOptions[getRandomIndex()])}>New Todo</button>
+                </main>
+                <footer className={"text-sm"}>CH10 Bridge | 2025</footer>
+            </div>
+        </>
+    )
 }
-
-export default App
