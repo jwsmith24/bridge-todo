@@ -1,0 +1,15 @@
+services:
+  todo_db:
+    image: postgres
+    environment:
+      POSTGRES_USER: todo_user
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: todo_db
+
+    ports:
+      - "5439:5432"
+    volumes:
+      - todo_data:/var/lib/postgresql/data
+
+volumes:
+  todo_data:
