@@ -20,3 +20,4 @@ for multiple nodes)
 `findAllBy` returns a promise that resolves to an array of elements
 
 
+Can convert from NPM to Yarn in a project by just deleting the package-lock.json file
