@@ -1,13 +1,19 @@
 import type {Todo} from "../types/Todo.ts";
 
 type TodoItemProps = {
-    todoItem: Todo;
+    todo: Todo;
+    onToggle: (id: number) => void;
 }
-export default function TodoItem({todoItem}: TodoItemProps) {
+export default function TodoItem({todo, onToggle}: TodoItemProps) {
     return (
         <article className={"flex gap-4"}>
-            <p>{todoItem.title}</p>
-            <p>{todoItem.completed ? "DONE" : "NOT DONE"}</p>
+            <h2>{todo.title}</h2>
+
+            <label>
+                <input type="checkbox" checked={todo.completed} onChange={() => onToggle(todo.id!)}/>
+                {todo.completed ? "Done" : "Not done"}
+            </label>
+
         </article>
     );
 }

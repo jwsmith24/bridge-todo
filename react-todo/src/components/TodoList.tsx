@@ -17,12 +17,17 @@ export default function TodoList() {
         }
     ]
 
-    const [todos] = useState<Todo[]>(mockTodos);
+    const [todos, setTodos] = useState<Todo[]>(mockTodos);
+
+    const toggleTodo = (id: number) => {
+        setTodos((prev) =>
+        prev.map((todo) => todo.id === id ? {...todo, completed: !todo.completed} : todo))
+    }
 
     return (
-        <div className={"border border-black p-4 "}>
+        <div className={"border border-black p-4 grid gap-4 "}>
             {todos.map((item, index) => (
-                <TodoItem todoItem={item} key={`${item.title}-${index}`}/>
+                <TodoItem todo={item} key={item.id ?? `${item.title}-${index}`} onToggle={toggleTodo}/>
             ))}
         </div>
     )
