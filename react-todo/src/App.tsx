@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import toDoLogo from "./assets/todo_icon.png";
+import TodoList from "./components/TodoList.tsx";
 
 export default function App() {
 
@@ -31,7 +32,7 @@ export default function App() {
                     </div>
                 </header>
                 <main className={"grow content-center grid gap-4"}>
-                    future todo list will be here probably
+                    <TodoList/>
                     <button onClick={() => setActiveTodo(todoOptions[getRandomIndex()])}>New Todo</button>
                 </main>
                 <footer className={"text-sm"}>CH10 Bridge | 2025</footer>
