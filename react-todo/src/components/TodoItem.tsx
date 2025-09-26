@@ -6,10 +6,10 @@ type TodoItemProps = {
 }
 export default function TodoItem({todo, onToggle}: TodoItemProps) {
     return (
-        <article className={"flex gap-4"}>
+        <article className={"flex gap-4 justify-between"}>
             <h2>{todo.title}</h2>
 
-            <label>
+            <label className={"flex gap-2"}>
                 <input type="checkbox" checked={todo.completed} onChange={() => onToggle(todo.id!)}/>
                 {todo.completed ? "Done" : "Not done"}
             </label>

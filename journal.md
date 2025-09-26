@@ -21,3 +21,18 @@ for multiple nodes)
 
 
 Can convert from NPM to Yarn in a project by just deleting the package-lock.json file
+
+
+--
+Set up a React application with Tailwind and Vitest plus React Testing Library. Modeled a basic 
+todo item and created components for a todo list and the todo items. 
+
+Wrote tests to ensure the correct content appears on the screen using `findByRole` matchers and 
+tested that the appropriate event handler fires when a user clicks the checkbox with the 
+user-event library and mock functions from vitest.
+
+Modeled the data for the backend to practice working with more complex relationships.
+The system will track individual users. Each user can have multiple todo lists (shopping lists vs 
+daily work tasks, etc). Todo lists have many todo items.
+
+Wrote the DDL to initialize the table in a Flyway migration file and wired up matching entities. 

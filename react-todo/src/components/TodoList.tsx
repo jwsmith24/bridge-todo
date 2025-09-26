@@ -14,6 +14,11 @@ export default function TodoList() {
             id: 2,
             title: "second thing",
             completed: false
+        },
+        {
+            id: 3,
+            title: "third thing",
+            completed: true
         }
     ]
 
