@@ -1,5 +1,3 @@
-import { useState } from "react";
-import type { Todo } from "../types/Todo.ts";
 import TodoItem from "./TodoItem.tsx";
 import {
   Table,
@@ -8,37 +6,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table.tsx";
+import type { Todo } from "@/types/Todo.ts";
+import type { Dispatch, SetStateAction } from "react";
 
-export default function TodoList() {
-  const mockTodos: Todo[] = [
-    {
-      id: 1,
-      title: "first thing",
-      description: "",
-      completed: false,
-      points: 10,
-      assignee: "Wyson",
-    },
-    {
-      id: 2,
-      title: "second thing",
-      description: "",
-      completed: false,
-      points: 20,
-      assignee: "Tyler",
-    },
-    {
-      id: 3,
-      title: "third thing",
-      description: "",
-      completed: true,
-      points: 30,
-      assignee: "Jake",
-    },
-  ];
-
-  const [todos, setTodos] = useState<Todo[]>(mockTodos);
-
+interface TodoListProps {
+  todos: Todo[];
+  addTodo: (todo: Todo) => void;
+  setTodos: Dispatch<SetStateAction<Todo[]>>;
+}
+//todo: wire up add todo and test
+export default function TodoList({ todos, addTodo, setTodos }: TodoListProps) {
   const totalPoints = todos.reduce((sum, item) => sum + item.points, 0);
   const completedPoints = todos
     .filter((item) => item.completed)
@@ -55,11 +32,13 @@ export default function TodoList() {
   };
 
   return (
-    <div className={"bg-gray-500 p-4 rounded-2xl shadow-xl"}>
+    <div
+      className={"bg-gray-500 p-5 rounded-2xl shadow-xl w-[60vw] flex flex-col"}
+    >
       <section
         aria-label={"points summary"}
         className={
-          "bg-blue-400 text-white rounded-xl flex justify-end px-2 py-1"
+          "bg-blue-400 text-white rounded-xl flex justify-end px-2 py-1 place-self-end"
         }
       >
         Completed {completedPoints} / {totalPoints} points

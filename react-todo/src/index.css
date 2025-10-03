@@ -51,6 +51,12 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+input {
+    background-color: white;
+    border-radius: 0.3rem;
+    color: black;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
