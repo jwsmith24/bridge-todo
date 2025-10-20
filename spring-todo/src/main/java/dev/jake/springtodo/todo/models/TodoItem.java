@@ -1,4 +1,4 @@
-package dev.jake.springtodo.todo;
+package dev.jake.springtodo.todo.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,6 +17,9 @@ public class TodoItem {
     private Long id;
 
     private String title;
+    private String description;
+    private Integer points;
+    private String assignee;
     private Boolean completed = false; // default to not complete
 
     @ManyToOne

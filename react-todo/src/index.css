@@ -55,6 +55,8 @@ input {
     background-color: white;
     border-radius: 0.3rem;
     color: black;
+    padding: 2px;
+
 }
 
 a {

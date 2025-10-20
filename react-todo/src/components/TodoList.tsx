@@ -6,28 +6,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table.tsx";
-import type { Todo } from "@/types/Todo.ts";
-import type { Dispatch, SetStateAction } from "react";
+
+import type { TodoList } from "@/types/TodoList.ts";
 
 interface TodoListProps {
-  todos: Todo[];
-  addTodo: (todo: Todo) => void;
-  setTodos: Dispatch<SetStateAction<Todo[]>>;
+  todoList: TodoList;
 }
-//todo: wire up add todo and test
-export default function TodoList({ todos, addTodo, setTodos }: TodoListProps) {
-  const totalPoints = todos.reduce((sum, item) => sum + item.points, 0);
-  const completedPoints = todos
+
+export default function TodoList({ todoList }: TodoListProps) {
+  console.log("todolist from backend: ", todoList);
+  const totalPoints = todoList.todos.reduce(
+    (sum, item) => sum + item.points,
+    0,
+  );
+  const completedPoints = todoList.todos
     .filter((item) => item.completed)
     .reduce((sum, item) => sum + item.points, 0);
 
   const toggleTodo = (id: number) => {
-    setTodos((prev) =>
-      prev
-        .map((todo) =>
-          todo.id === id ? { ...todo, completed: !todo.completed } : todo,
-        )
-        .sort((a, b) => Number(a.completed) - Number(b.completed)),
+    console.log(
+      "eventually will call backend to toggle complete on todo with id: ",
+      id,
     );
   };
 
@@ -46,14 +45,16 @@ export default function TodoList({ todos, addTodo, setTodos }: TodoListProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className={"text-white"}>Task</TableHead>
-            <TableHead className={"text-white"}>Points</TableHead>
-            <TableHead className={"text-white"}>Assigned to</TableHead>
-            <TableHead className={"text-white"}>Status</TableHead>
+            <TableHead className={"text-white font-bold"}>Task</TableHead>
+            <TableHead className={"text-white font-bold"}>Points</TableHead>
+            <TableHead className={"text-white font-bold"}>
+              Assigned to
+            </TableHead>
+            <TableHead className={"text-white font-bold"}>Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {todos.map((item, index) => (
+          {todoList.todos.map((item, index) => (
             <TodoItem
               todo={item}
               onToggle={toggleTodo}

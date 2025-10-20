@@ -30,7 +30,7 @@ describe("Todo page", () => {
     const addTodoButton = screen.getByRole("button", { name: /new todo/i });
     await user.click(addTodoButton);
 
-    const closeButton = await screen.findByRole("button", { name: /close/i });
+    const closeButton = await screen.findByRole("button", { name: /X/i });
     await user.click(closeButton);
 
     expect(
@@ -46,7 +46,7 @@ describe("Todo page", () => {
 
     await user.click(screen.getByRole("button", { name: /new todo/i }));
 
-    await user.click(screen.getByRole("button", { name: /close/i }));
+    await user.click(screen.getByRole("button", { name: /X/i }));
     expect(mockHandleClose).toHaveBeenCalled();
   });
 });

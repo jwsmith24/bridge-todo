@@ -17,12 +17,17 @@ describe("TodoItem", () => {
 
   const user = userEvent.setup();
   const onToggle = vi.fn();
+  const removeTodo = vi.fn();
 
   it("has a title", () => {
     render(
       <Table>
         <TableBody>
-          <TodoItem todo={mockTodo} onToggle={onToggle} />
+          <TodoItem
+            todo={mockTodo}
+            onToggle={onToggle}
+            removeTodo={removeTodo}
+          />
         </TableBody>
       </Table>,
     );
@@ -33,7 +38,11 @@ describe("TodoItem", () => {
     render(
       <Table>
         <TableBody>
-          <TodoItem todo={mockTodo} onToggle={onToggle} />
+          <TodoItem
+            todo={mockTodo}
+            onToggle={onToggle}
+            removeTodo={removeTodo}
+          />{" "}
         </TableBody>
       </Table>,
     );
@@ -44,7 +53,11 @@ describe("TodoItem", () => {
     render(
       <Table>
         <TableBody>
-          <TodoItem todo={mockTodo} onToggle={onToggle} />
+          <TodoItem
+            todo={mockTodo}
+            onToggle={onToggle}
+            removeTodo={removeTodo}
+          />{" "}
         </TableBody>
       </Table>,
     );
@@ -58,6 +71,7 @@ describe("TodoItem", () => {
           <TodoItem
             todo={{ ...mockTodo, assignee: undefined }}
             onToggle={onToggle}
+            removeTodo={removeTodo}
           />
         </TableBody>
       </Table>,
@@ -70,8 +84,9 @@ describe("TodoItem", () => {
       <Table>
         <TableBody>
           <TodoItem
-            todo={{ ...mockTodo, assignee: undefined }}
+            todo={mockTodo}
             onToggle={onToggle}
+            removeTodo={removeTodo}
           />
         </TableBody>
       </Table>,

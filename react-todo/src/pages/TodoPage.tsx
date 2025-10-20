@@ -1,46 +1,16 @@
 import TodoList from "@/components/TodoList.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import { type FormEvent, useState } from "react";
+import { useState } from "react";
 import TodoDialog from "@/components/TodoDialog.tsx";
-import type { Todo } from "@/types/Todo.ts";
+import { useTodos } from "@/hooks/useTodos.ts";
 
 interface TodoPageProps {
   setActiveTodo: () => void;
 }
 
 export default function TodoPage({ setActiveTodo }: TodoPageProps) {
-  const mockTodos: Todo[] = [
-    {
-      id: 1,
-      title: "first thing",
-      description: "",
-      completed: false,
-      points: 10,
-      assignee: "Wyson",
-    },
-    {
-      id: 2,
-      title: "second thing",
-      description: "",
-      completed: false,
-      points: 20,
-      assignee: "Tyler",
-    },
-    {
-      id: 3,
-      title: "third thing",
-      description: "",
-      completed: true,
-      points: 30,
-      assignee: "Jake",
-    },
-  ];
-
-  const [todos, setTodos] = useState<Todo[]>(mockTodos);
-
-  const addTodo = (todo: Todo) => {
-    setTodos([...todos, todo]);
-  };
+  const DEFAULT_LIST_ID = 1;
+  const { data: todoList, loading, error, refetch } = useTodos(DEFAULT_LIST_ID);
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -49,10 +19,11 @@ export default function TodoPage({ setActiveTodo }: TodoPageProps) {
     setActiveTodo();
   };
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log("hi");
-  };
+  if (loading) return <div>loading...</div>;
+
+  if (error) return <div>{error.message}</div>;
+
+  if (!todoList) return null;
 
   return (
     <>
@@ -65,12 +36,14 @@ export default function TodoPage({ setActiveTodo }: TodoPageProps) {
       >
         New Todo
       </Button>
-      <TodoList />
+      <TodoList todoList={todoList} />
 
       {dialogOpen && (
         <TodoDialog
-          handleClose={() => setDialogOpen(false)}
-          handleSubmit={() => handleSubmit}
+          refetch={refetch}
+          handleClose={() => {
+            setDialogOpen(false);
+          }}
         />
       )}
     </>

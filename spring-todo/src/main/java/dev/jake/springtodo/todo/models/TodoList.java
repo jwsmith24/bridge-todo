@@ -1,4 +1,4 @@
-package dev.jake.springtodo.todo;
+package dev.jake.springtodo.todo.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,11 +21,10 @@ public class TodoList {
 
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    // mapped by the todoList attribute on User
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TodoItem> todos = new ArrayList<>();
+
+    public void addTodo(TodoItem todo){
+        todos.add(todo);
+    }
 }

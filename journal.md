@@ -7,8 +7,8 @@ or multiple (use `getAllBy` for multiple nodes)
 
 `getAllBy' will return an array of all matching nodes or throw an error if nothing is found
 
-`queryBy` returns the matching node for a query or null if something doesn't match. Can be used 
-to assert an element is not present. Throws an error if more than one thing is found (use 
+`queryBy` returns the matching node for a query or null if something doesn't match. **Can be used 
+to assert an element is not present.** Throws an error if more than one thing is found (use 
 `queryAllBy` if that's the goal)
 
 `queryAllBy` returns an array of all matching nodes or an empty array if nothing is ofund
@@ -36,3 +36,9 @@ The system will track individual users. Each user can have multiple todo lists (
 daily work tasks, etc). Todo lists have many todo items.
 
 Wrote the DDL to initialize the table in a Flyway migration file and wired up matching entities. 
+
+
+## Part 2
+`toBeVisible()` over `toBeInDocument()` so we know it's actually being rendered on the page
+
+Expanded the Todo type to include an option assignee and have a point value
